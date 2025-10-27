@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Content Crafter AI
 
 AI-powered content generation for blogs, product descriptions, and social media captions.
@@ -164,3 +165,6 @@ content-crafter-ai/
 ## License
 
 MIT
+=======
+# content-crafter-ai
+>>>>>>> 95655411aafb4c45918e3cc608d572ea9991c877
