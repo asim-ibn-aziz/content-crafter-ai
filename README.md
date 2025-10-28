@@ -1,48 +1,42 @@
-<<<<<<< HEAD
 # Content Crafter AI
 
-AI-powered content generation for blogs, product descriptions, and social media captions.
+AI-powered content generation with a clean ChatGPT-style UI. Generate blogs, product descriptions, and social captions with selectable tones.
 
-## Features
+## What’s Inside
 
-- 🎨 **Multiple Content Types**: Generate blog posts, product descriptions, and social captions
-- 🎭 **Different Tones**: Choose from Professional, Funny, Persuasive, or Chill tones
-- ⚡ **Lightning Fast**: Powered by Llama 3.1 8B (Instant) via Groq - ~560 tokens/sec!
-- 📋 **One-Click Copy**: Instantly copy generated content to clipboard
-- 🔄 **Regenerate**: Generate new variations with a single click
-- 💅 **Beautiful UI**: Modern, responsive design with Tailwind CSS & gradient backgrounds
-- 🆓 **Completely Free**: No credits needed! Uses Groq's free tier with generous limits
+- 🎨 **Multiple Content Types**: Blog Post, Product Description, Social Caption
+- 🎭 **Tones**: Professional, Funny, Persuasive, Chill
+- ⚡ **Fast AI**: Groq Llama 3.1 8B Instant (OpenAI-compatible API)
+- 💬 **Chat UI**: User and AI bubbles, fixed bottom input bar
+- 🕶️ **Dark/Light/System Theme**: Toggle with persistence
+- 🧷 **History**: Local, live-updating generation history (no refresh needed)
+- 🔔 **Toasts**: Success/error/loading toasts (auto-dismiss in 1s)
+- ⌨️ **Keyboard Shortcuts**: Ctrl+Enter to generate, Ctrl+C to copy
+- 📱 **Responsive**: Looks great on desktop and mobile
 
 ## Tech Stack
 
 - **Frontend**: Next.js 14 + TypeScript + Tailwind CSS
-- **UI Components**: Custom components with shadcn/ui styling
 - **Icons**: Lucide React
 - **Backend**: Next.js API Routes
-- **AI**: Groq (Llama 3.1 8B Instant) - Default, fastest free option
+- **AI Providers**: Groq (default), Together AI, OpenRouter (drop-in via env)
 - **Deployment**: Vercel-ready
 
-## Setup Instructions
+## Quick Start
 
-### 1. Install Dependencies
+1. Install deps
 
 ```bash
 npm install
 ```
 
-### 2. Configure Environment Variables
+2. Configure environment (choose one provider)
 
-Create a `.env.local` file in the root directory and add ONE of the following:
-
-**Recommended: Groq (Fast & Free!)**
+Groq (recommended, fast & generous free tier):
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 ```
-
-Get your API key from [Groq Console](https://console.groq.com/) - **Free tier, 560 tokens/sec, no credit card required!**
-
-**Alternative Options:**
 
 Together AI:
 
@@ -50,39 +44,32 @@ Together AI:
 TOGETHER_API_KEY=your_together_api_key_here
 ```
 
-[Get API key](https://api.together.xyz/) - $25 free credits/month
-
 OpenRouter:
 
 ```env
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
 
-[Get API key](https://openrouter.ai/keys) - Requires account credits
-
-### 3. Run Development Server
+3. Run dev server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open http://localhost:3000
 
-### 4. Build for Production
+4. Build & start
 
 ```bash
 npm run build
 npm start
 ```
 
-## Deployment to Vercel
+Notes:
 
-1. Push your code to GitHub
-2. Import your repository in [Vercel](https://vercel.com)
-3. Add environment variable `GROQ_API_KEY` in Vercel dashboard (Settings → Environment Variables)
-4. Deploy! Your app will be live at `https://your-project.vercel.app`
-
-**Note**: If no API key is configured, the app will use mock data mode for testing.
+- If no API key is set, the app falls back to a built-in mock response for testing.
+- Theme preference persists to localStorage and supports system theme changes.
+- History stores your last 50 generations locally and updates live.
 
 ## Project Structure
 
@@ -90,81 +77,56 @@ npm start
 content-crafter-ai/
 ├── src/
 │   ├── app/
-│   │   ├── api/
-│   │   │   └── generate/
-│   │   │       └── route.ts      # API endpoint for content generation
-│   │   ├── layout.tsx             # Root layout
-│   │   ├── page.tsx               # Home page component
-│   │   └── globals.css            # Global styles
+│   │   ├── api/generate/route.ts   # AI generation endpoint
+│   │   ├── layout.tsx               # Root layout (Theme + Toast providers)
+│   │   ├── page.tsx                 # Chat-style UI
+│   │   └── globals.css              # Global styles + theme variables
 │   ├── components/
-│   │   └── ui/                    # Reusable UI components
-│   │       ├── button.tsx
-│   │       ├── card.tsx
-│   │       ├── input.tsx
-│   │       ├── select.tsx
-│   │       └── textarea.tsx
+│   │   ├── generation-history.tsx   # Live-updating local history modal
+│   │   ├── theme-toggle.tsx         # Theme switcher (light/dark/system)
+│   │   ├── toast.tsx                # Toast system + hooks
+│   │   └── ui/                      # Base UI components
 │   └── lib/
-│       └── utils.ts               # Utility functions
-├── .env.example                   # Environment variables template
+│       └── theme-provider.tsx       # Theme context
 ├── next.config.js
 ├── package.json
 ├── tailwind.config.ts
 └── tsconfig.json
 ```
 
-## Phase 1 Features - ✅ COMPLETE
+# Status
 
-✅ **Text generation with AI** - Powered by Groq Llama 3.1 8B Instant  
-✅ **Content type selection** - Blog/Product/Social Caption  
-✅ **Tone selection** - Professional/Funny/Persuasive/Chill  
-✅ **Topic/keyword input** - Flexible prompt system  
-✅ **Generate button** - With loading animations  
-✅ **Copy functionality** - One-click clipboard copy  
-✅ **Regenerate button** - Generate variations instantly  
-✅ **Loading states** - Beautiful spinner animations  
-✅ **Responsive UI** - Works on desktop, tablet, and mobile  
-✅ **Error handling** - Graceful error messages  
-✅ **Mock mode** - Works without API key for testing
+### Phase 1 – Core (Complete)
 
-## Roadmap - Future Phases
+- AI text generation (Groq default; OpenAI-compatible)
+- Content type + tone selection
+- Copy + Regenerate
+- Loading + error states
+- Responsive UI
 
-### Phase 2 - UX Polish (Planned)
+### Phase 2 – UX Polish (Complete)
 
-- Dark/light mode toggle
-- Generation history with localStorage
-- Toast notifications for better UX
-- Animations and transitions
+- Chat-style interface with user/assistant bubbles
+- Dark/light/system theme with persistence
+- Local history with live updates (no refresh)
+- Toast notifications with 1s auto-dismiss
+- Keyboard shortcuts (Ctrl+Enter, Ctrl+C)
+- Smooth animations and modern visuals
 
-### Phase 3 - AI Expansion (Planned)
+### Next Up – Phase 3 Ideas
 
-- Image generation support
-- Content rewriting/improvement
-- SEO optimization tools
-- Multilingual support
+- Content improvement (shorter/longer, rewrite)
+- SEO helpers (titles, meta, keywords)
+- More content types (email, ads, press releases)
+- Optional: image generation
 
-### Phase 4 - User Accounts (Planned)
+## Deployment (Vercel)
 
-- Authentication (Supabase/Clerk)
-- User dashboard
-- Generation history database
-- Usage analytics
-
-### Phase 5 - Monetization (Planned)
-
-- Free tier limits
-- Premium subscription (Stripe)
-- Admin panel
-- Revenue tracking
-
-### Phase 6 - Social Integration (Planned)
-
-- Auto-post to social media
-- Browser extension
-- Mobile companion app
+1. Push this repo to GitHub
+2. Import in Vercel
+3. Add provider API key (e.g., `GROQ_API_KEY`) in Project Settings → Environment Variables
+4. Deploy
 
 ## License
 
 MIT
-=======
-# content-crafter-ai
->>>>>>> 95655411aafb4c45918e3cc608d572ea9991c877
